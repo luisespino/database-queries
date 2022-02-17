@@ -69,3 +69,66 @@ SELECT * FROM (
 		count(name) as subtotal
 		FROM country)) AS t
 	ORDER BY continent
+
+
+-- 6. Mostrar los nombres de países que concuerdan con el nombre de una ciudad.
+
+SELECT name FROM country
+INTERSECT
+SELECT name FROM city
+
+-- alternativo
+SELECT name 
+	FROM country
+	WHERE name IN (SELECT name FROM city)
+
+--alternativo
+SELECT name 
+	FROM country
+	WHERE name = ANY 
+	(SELECT name FROM city)
+
+
+-- 7. Mostrar los nombres de países que NO concuerdan con el nombre de una ciudad.
+
+SELECT name FROM country
+EXCEPT -- MINUS
+SELECT name FROM city
+
+-- alternativo
+SELECT name 
+	FROM country
+	WHERE name 
+	
+-- alternativo
+SELECT name 
+	FROM country
+	WHERE name != ALL (SELECT name FROM city)
+
+
+-- 8. Mostrar cuál es el valor máximo y el mínimo de esperanza de vida de los países
+-- (no tomar en cuenta los nulos).
+
+SELECT MAX(lifeexpectancy), MIN(lifeexpectancy)
+	FROM country
+
+
+-- 9. Mostrar los nombres de países ordenados alfabéticamente y el número de 
+-- ciudades que tiene.
+
+SELECT co.name, COUNT(ci.countrycode)
+	FROM city ci, country co
+	WHERE co.code = ci.countrycode
+	GROUP BY co.name
+	ORDER BY co.name 
+
+
+-- 10. Mostrar los nombres de países que no tienen ninguna ciudad asociada.
+
+SELECT name 
+	FROM country 
+	WHERE code NOT IN 
+		(SELECT countrycode 
+			FROM city 
+			GROUP BY countrycode)
+			
