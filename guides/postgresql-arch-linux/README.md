@@ -1,4 +1,4 @@
-# Install PostgreSQl in Arch Linux
+# Install PostgreSQL in Arch Linux
 
 Update the system:
 ```
