@@ -1,8 +1,10 @@
-World
-=====
+# Restore World Objects in Oracle APEX 
 
-https://www.postgresql.org/ftp/projects/pgFoundry/dbsamples/world/world-1.0/
+1. Log in to Oracle APEX.
+2. Click on **SQL Workshop**.
+3. Click on **SQL Commands** or **SQL Scripts** and execute the `world.sql` file from the `world-backup` folder.
+4. Click on **SQL Workshop** > **Object Browser** > Select each object (CITY, COUNTRY, COUNTRY_LANGUAGE).
+   - Click on the **Data** tab.
+   - Click on **Load Data** > **Load Data**.
+   - Click on **Choose File** and select each CSV file from the `world-backup` folder to load the data.
 
-1. Extract SQL file from TAR.
-2. Execute:
-psql -U postgres -d world < "yourpath"\world.sql
